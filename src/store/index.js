@@ -21,7 +21,7 @@ export default new Vuex.Store({
   actions: {
     GET_TRADE_FROM_API({ commit }) {
       return axios(
-        "https://raw.githubusercontent.com/N1ikls/Disfood/master/public/orders.json",
+        "https://raw.githubusercontent.com/N1ikls/Disfood_2/master/public/orders.json",
         {
           method: "GET",
         }
