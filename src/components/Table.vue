@@ -22,7 +22,7 @@
             item-key="N"
             :page.sync="page"
             :items-per-page="itemsPerPage"
-            hide-default-footer
+            fixed-header
             class="elevation-1"
             @page-count="pageCount = $event"
           >
@@ -38,17 +38,21 @@
                 :value="itemsPerPage"
                 label="Количество строк"
                 type="number"
-                min="-1"
-                max="15"
+                min="1"
                 @input="itemsPerPage = parseInt($event, 10)"
               ></v-text-field>
             </v-col>
+
             <v-pagination
               v-model="page"
               :length="pageCount"
+              :total-visible="7"
               circle
-              success
-              />
+              color="#71BF45"
+            />
+            <div class="mr-5">
+              {{ getNumberLenght }} из {{ trade_mas.length }}
+            </div>
           </div>
         </v-card>
       </div>
@@ -61,9 +65,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      page: 3,
+      page: 1,
       pageCount: 0,
-      itemsPerPage: 10,
+      itemsPerPage: 5,
+
       search: "",
       headers: [
         {
@@ -117,12 +122,11 @@ export default {
       }
       return mas;
     },
-    get_tradeid() {
-      let mas = [];
-      for (let i in this.trade.trade) {
-        mas.push(this.trade.trade[i].N);
+    getNumberLenght() {
+      let a = this.page;
+      if (a == 1) {
+        return `${this.page}-${this.itemsPerPage}`;
       }
-      return mas;
     },
   },
   methods: {
@@ -135,7 +139,7 @@ export default {
       if (N == "Завершена") return "green";
       else if (N == "Оплата") return "#CAE7BA";
       else if (N == "") return "transparent";
-      else if (N == 'Не состоялась') return '#FDDFD8';
+      else if (N == "Не состоялась") return "#FDDFD8";
       else return " #FDDFD8";
     },
     filterOnlyCapsText(value, search, item) {
@@ -163,12 +167,13 @@ export default {
   margin-right: 20px !important;
 }
 
-.v-data-table {
+/*.v-data-table {
   border-radius: 20px !important;
 }
 .v-sheet.v-card {
   border-radius: 20px !important;
 }
+*/
 .v-data-footer {
   font-size: 15px !important;
 }
@@ -177,13 +182,20 @@ export default {
   align-items: center;
   justify-content: space-between !important;
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .text-center {
     flex-direction: column;
   }
 }
-.v-application .primary {
+/*.v-application .primary {
   background-color:  #71BF45 !important;
   color: #fff !important;
+}
+*/
+.v-pagination--circle .v-pagination__item,
+.v-pagination--circle .v-pagination__more,
+.v-pagination--circle .v-pagination__navigation {
+  border-radius: 10px !important;
+  padding: 0px 20px !important;
 }
 </style>
