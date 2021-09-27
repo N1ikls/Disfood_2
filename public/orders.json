@@ -1,0 +1,126 @@
+{
+"trade":[
+{
+	"N":12343,
+	"created":"11.03.2000",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":99734349,
+	"delivery_type":"авто",
+	"counterparty":"ООО Рога и копыта",
+	"delivary":"Беларусь, Шумилино,Россия, Екатеринбург",
+	"status":"Завершена"	
+},
+	{
+	"N":12344,
+	"created":"11.03.2000",
+	"product":"5 позиций",
+	"volume":"100000 кг",
+	"packaging":"",
+	"summ":20734349,
+	"delivery_type":"авто",
+	"counterparty":"ООО Рога и копыта",
+	"delivary":"Беларусь, Шумилино,Россия, Екатеринбург",
+	"status":"Оплата"	
+},
+	{
+	"N":12345,
+	"created":"",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":734349 ,
+	"delivery_type":"",
+	"counterparty":"",
+	"delivary":"",
+	"status":""	
+},
+	{
+	"N":12346,
+	"created":"",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":734349 ,
+	"delivery_type":"",
+	"counterparty":"",
+	"delivary":"",
+	"status":""	
+},
+	{
+	"N":12347,
+	"created":"",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":734349,
+	"delivery_type":"",
+	"counterparty":"",
+	"delivary":"",
+	"status":""	
+},
+	{
+	"N":12348,
+	"created":"",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":734349 ,
+	"delivery_type":"",
+	"counterparty":"",
+	"delivary":"",
+	"status":""	
+},
+	{
+	"N":12349,
+	"created":"",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":734349 ,
+	"delivery_type":"",
+	"counterparty":"",
+	"delivary":"",
+	"status":""	
+},
+	{
+	"N":12350,
+	"created":"11.03.2000",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":99734349,
+	"delivery_type":"авто",
+	"counterparty":"ООО Рога и копыта",
+	"delivary":"Беларусь, Шумилино,Россия, Екатеринбург",
+	"status":"Не состоялась"	
+},
+	{
+	"N":12351,
+	"created":"11.03.2000",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":99734349,
+	"delivery_type":"авто",
+	"counterparty":"ООО Рога и копыта",
+	"delivary":"Беларусь, Шумилино,Россия, Екатеринбург",
+	"status":"Оплата"	
+},
+	
+	{
+	"N":12352,
+	"created":"11.03.2000",
+	"product":"Рис круглый шлифованный",
+	"volume":"20000 кг",
+	"packaging":"50 кг",
+	"summ":99734349,
+	"delivery_type":"авто",
+	"counterparty":"ООО Рога и копыта",
+	"delivary":"Беларусь, Шумилино,Россия, Екатеринбург",
+	"status":"Оплата"	
+}
+
+]
+}
