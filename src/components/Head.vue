@@ -10,6 +10,7 @@
               viewBox="0 0 16 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              class="logotype__head"
             >
               <path
                 fill-rule="evenodd"
@@ -19,8 +20,8 @@
               />
             </svg>
             <svg
-              width="26"
-              height="34"
+              width="30"
+              height="39"
               viewBox="0 0 26 34"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +59,7 @@
           >
         </b-navbar-nav>
 
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto mr-3">
           <div class="header__items__logo m-1">
             <b-nav-text
               class="header__link__text text-reset p-0"
@@ -81,7 +82,7 @@
 
 <script>
 export default {
-  name: "Head"
+  name: "Head",
 };
 </script>
 
@@ -91,6 +92,7 @@ export default {
 }
 .header__logotype {
   display: flex;
+  align-items: center;
 }
 .header__link__text {
   font-size: 15px;
@@ -120,6 +122,12 @@ export default {
 
 .logotype__bottom {
   font-size: 12px;
+}
+.logotype__head {
+  position: relative;
+  top: 5px;
+
+  left: 19.33333%;
 }
 .logotype {
   font-size: 20px;

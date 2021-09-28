@@ -22,12 +22,15 @@
             item-key="N"
             :page.sync="page"
             :items-per-page="itemsPerPage"
-            fixed-header
             class="elevation-1"
             @page-count="pageCount = $event"
           >
             <template v-slot:[`item.status`]="{ item }">
-              <v-chip :color="getColor(item.status)" dark>
+              <v-chip
+                :color="getColor(item.status)"
+                dark
+                :text-color="ColorText(item.status)"
+              >
                 {{ item.status }}
               </v-chip>
             </template>
@@ -42,15 +45,14 @@
                 @input="itemsPerPage = parseInt($event, 10)"
               ></v-text-field>
             </v-col>
-
             <v-pagination
               v-model="page"
               :length="pageCount"
-              :total-visible="7"
+              :total-visible="total_visible"
               circle
               color="#71BF45"
             />
-            <div class="mr-5">
+            <div class="pagination__info">
               {{ getNumberLenght }} из {{ trade_mas.length }}
             </div>
           </div>
@@ -65,10 +67,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
+      total_visible: 7,
       page: 1,
-      pageCount: 0,
+      pageCount: 6,
       itemsPerPage: 5,
-
       search: "",
       headers: [
         {
@@ -98,13 +100,15 @@ export default {
   name: "Table",
   mounted() {
     //do something after mounting vue instance
-    this.GET_TRADE_FROM_API();
+    this.GET_TRADE_FROM_API(); //наш get json
+    this.maxWidth();
   },
   computed: {
     ...mapGetters(["trade", "searchValue"]),
     filteredList() {
+      // Поиск
       // фильтр поиска по категории
-      var comp = this.search;
+      let comp = this.search;
       if (this.search) {
         return this.trade_mas.filter(function(elem) {
           if (comp === "") return true;
@@ -116,6 +120,7 @@ export default {
     },
 
     trade_mas() {
+      // массив json
       let mas = [];
       for (let i in this.trade.trade) {
         mas.push(this.trade.trade[i]);
@@ -123,10 +128,16 @@ export default {
       return mas;
     },
     getNumberLenght() {
-      let a = this.page;
-      if (a == 1) {
+      if (this.page == 1) {
         return `${this.page}-${this.itemsPerPage}`;
+      } else {
+        let mas = 0;
+        for (let i = 0; i <= this.pageCount; i++) {
+          mas += 0;
+        }
+        return mas;
       }
+      return;
     },
   },
   methods: {
@@ -136,19 +147,37 @@ export default {
       this.GET_SEARCH_VALUE(value);
     },
     getColor(N) {
+      // цвет статуса
       if (N == "Завершена") return "green";
       else if (N == "Оплата") return "#CAE7BA";
       else if (N == "") return "transparent";
       else if (N == "Не состоялась") return "#FDDFD8";
       else return " #FDDFD8";
     },
+    ColorText(N) {
+      // цвет текста статуса
+      if (N == "Оплата") return "#22262A";
+      else if (N == "Не состоялась") return "#22262A";
+    },
     filterOnlyCapsText(value, search, item) {
+      // фильтр сортировки
       return (
         value != null &&
         search != null &&
         typeof value === "string" &&
         value.toLowerCase().indexOf(search) !== -1
       );
+    },
+    maxWidth() {
+      // адаптив для телефона если разрешение будет меньще 600 px то пагинация будет стрелочная
+      setInterval(() => {
+        let w = window.innerWidth;
+        if (w < 600) {
+          this.total_visible = 0;
+        } else {
+          this.total_visible = 7;
+        }
+      }, 100);
     },
   },
 };
@@ -197,5 +226,34 @@ export default {
 .v-pagination--circle .v-pagination__navigation {
   border-radius: 10px !important;
   padding: 0px 20px !important;
+}
+.v-chip.v-size--default {
+  border-radius: 5px !important;
+}
+.main {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin: 1.5em;
+}
+@media (max-width: 600px) {
+  .main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  .text__countcol {
+    text-align: center;
+  }
+}
+.pagination__info {
+  margin-right: 20px;
+}
+@media (max-width: 643px) {
+  .pagination__info {
+    margin-top: 30px;
+    margin-right: 0 !important;
+  }
 }
 </style>
