@@ -24,6 +24,7 @@
             :items-per-page="itemsPerPage"
             class="elevation-1"
             @page-count="pageCount = $event"
+            hide-default-footer
           >
             <template v-slot:[`item.status`]="{ item }">
               <v-chip
@@ -53,7 +54,8 @@
               color="#71BF45"
             />
             <div class="pagination__info">
-              {{ getNumberLenght }} из {{ trade_mas.length }}
+              {{ `${this.getSecond}-${this.getBegin}` }} из
+              {{ trade_mas.length }}
             </div>
           </div>
         </v-card>
@@ -127,17 +129,35 @@ export default {
       }
       return mas;
     },
-    getNumberLenght() {
+    getBegin() {
+      let mas = 0;
       if (this.page == 1) {
-        return `${this.page}-${this.itemsPerPage}`;
+        return this.itemsPerPage;
       } else {
-        let mas = 0;
-        for (let i = 0; i <= this.pageCount; i++) {
-          mas += 0;
+        for (let i = 0; i < this.page; i++) {
+          mas += this.itemsPerPage;
+        }
+        if (this.itemsPerPage == NaN) {
+          return 0;
+        }
+        if (this.page == Math.ceil(this.trade_mas.length / this.itemsPerPage)) {
+          return this.trade_mas.length;
         }
         return mas;
       }
-      return;
+    },
+    getSecond() {
+      if (this.page == 1) {
+        return 1;
+      } else {
+        if (this.page == Math.ceil(this.trade_mas.length / this.itemsPerPage)) {
+          return this.getBegin - 1;
+        }
+        if (this.itemsPerPage == NaN) {
+          return 0;
+        }
+        return this.getBegin - this.itemsPerPage + 1;
+      }
     },
   },
   methods: {
@@ -255,5 +275,8 @@ export default {
     margin-top: 30px;
     margin-right: 0 !important;
   }
+}
+.v-pagination__item {
+  transition: 0.7s cubic-bezier(0, 0, 0.2, 1) !important;
 }
 </style>
